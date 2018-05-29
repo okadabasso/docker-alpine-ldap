@@ -1,0 +1,1 @@
+sample for docker container with alpine/openldap
