@@ -1,0 +1,76 @@
+dn: uid=administrator,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+uid: administrator
+userPassword: administrator
+cn: test administrator
+sn: administrator
+givenName: administrator
+mail: administrator@craft.local
+
+dn: uid=testuser01,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+uid: testuser01
+cn: test user01
+sn: test
+givenName: user01
+mail: testuser01@craft.local
+userPassword: testuser01
+
+dn: uid=testuser02,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+uid: testuser02
+cn: test user02
+sn: test
+givenName: user02
+mail: testuser02@craft.local
+userPassword: testuser02
+
+dn: uid=testuser03,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+uid: testuser03
+cn: test user03
+sn: test
+givenName: user03
+mail: testuser03@craft.local
+userPassword: testuser03
+
+dn: uid=testuser11,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+uid: testuser11
+cn: test user11
+sn: test
+givenName: user11
+mail: testuser11@craft.local
+userPassword: testuser11
+
+dn: uid=testuser12,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+uid: testuser12
+cn: test user12
+sn: test
+givenName: user12
+mail: testuser12@craft.local
+userPassword: testuser12
+
+dn: uid=testuser13,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+uid: testuser13
+cn: test user13
+sn: test
+givenName: user13
+mail: testuser13@craft.local
+userPassword: testuser13

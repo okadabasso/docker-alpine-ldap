@@ -1,0 +1,130 @@
+dn: cn=config
+objectClass: olcGlobal
+cn: config
+olcArgsFile: /var/lib/openldap/run/slapd.args
+olcPidFile: /var/lib/openldap/run/slapd.pid
+
+#
+# Load dynamic backend modules:
+#
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModulepath:	/usr/lib/openldap
+olcModuleload:	back_mdb.so
+#olcModuleload:	back_bdb.la
+#olcModuleload:	back_hdb.la
+#olcModuleload:	back_ldap.la
+#olcModuleload:	back_passwd.la
+#olcModuleload:	back_shell.la
+
+dn: cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: schema
+
+include: file:///etc/openldap/schema/core.ldif
+
+include: file:///etc/openldap/schema/cosine.ldif
+
+include: file:///etc/openldap/schema/nis.ldif
+
+include: file:///etc/openldap/schema/inetorgperson.ldif
+
+
+# Frontend settings
+#
+dn: olcDatabase=frontend,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcFrontendConfig
+olcDatabase: frontend
+#
+# Sample global access control policy:
+#	Root DSE: allow anyone to read it
+#	Subschema (sub)entry DSE: allow anyone to read it
+#	Other DSEs:
+#		Allow self write access
+#		Allow authenticated users read access
+#		Allow anonymous users to authenticate
+#
+#olcAccess: to dn.base="" by * read
+#olcAccess: to dn.base="cn=Subschema" by * read
+#olcAccess: to *
+#	by self write
+#	by users read
+#	by anonymous auth
+#
+# if no access controls are present, the default policy
+# allows anyone and everyone to read anything but restricts
+# updates to rootdn.  (e.g., "access to * by * read")
+#
+# rootdn can always read and write EVERYTHING!
+#
+
+dn: olcDatabase={0}config,cn=config
+objectClass: olcDatabaseConfig
+olcDatabase: {0}config
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" manage by * none 
+olcRootDN: cn=config
+
+
+dn: cn={1}module,cn=config
+cn: module
+objectclass: olcModuleList
+objectclass: top
+olcModuleLoad: back_monitor.so
+olcModulePath: /usr/lib/openldap
+
+dn: olcDatabase={1}monitor,cn=config
+objectClass: olcDatabaseConfig
+olcDatabase: monitor
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" read by * none
+
+dn: olcDatabase={2}mdb,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcMdbConfig
+olcDatabase: mdb
+olcSuffix: dc=example,dc=com
+olcRootDN: cn=Manager,dc=example,dc=com
+# Cleartext passwords, especially for the rootdn, should
+# be avoided.  See slappasswd(8) and slapd-config(5) for details.
+# Use of strong authentication encouraged.
+olcRootPW: xxxxxxxx
+# The database directory MUST exist prior to running slapd AND 
+# should only be accessible by the slapd and slap tools.
+# Mode 700 recommended.
+olcDbDirectory:	/var/lib/openldap/openldap-data
+# Indices to maintain
+olcDbIndex: objectClass eq
+
+dn: cn={2}module,cn=config
+cn: {2}module
+objectClass: olcModuleList
+olcModuleLoad: memberof
+olcModulePath: /usr/lib/openldap
+
+dn: olcOverlay={1}memberof,olcDatabase={2}mdb,cn=config
+objectClass: olcConfig
+objectClass: olcMemberOf
+objectClass: olcOverlayConfig
+objectClass: top
+olcOverlay: {1}memberof
+olcMemberOfDangling: ignore
+olcMemberOfRefInt: TRUE
+olcMemberOfGroupOC: groupOfUniqueNames
+olcMemberOfMemberAD: uniqueMember
+olcMemberOfMemberOfAD: memberOf
+
+dn: cn={3}module,cn=config
+cn: module
+objectclass: olcModuleList
+objectclass: top
+olcModuleLoad: refint.so
+olcModulePath: /usr/lib/openldap
+
+dn: olcOverlay={2}refint,olcDatabase={2}mdb,cn=config
+objectClass: olcConfig
+objectClass: olcOverlayConfig
+objectClass: olcRefintConfig
+objectClass: top
+olcOverlay: refint
+olcRefintAttribute: memberof member manager owner

@@ -1,0 +1,10 @@
+dn: uid=testuser14,ou=users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: inetOrgPerson
+uid: testuser14
+cn: test user14
+sn: test
+givenName: user14
+mail: testuser14@craft.local
+userPassword: {BCRYPT}$2b$08$C5Di8ljbI2Utim3lfZkX5.Abij.OMQLuf3FB4/Ju0RR9zE6NgWidC
