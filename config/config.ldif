@@ -128,3 +128,11 @@ objectClass: olcRefintConfig
 objectClass: top
 olcOverlay: refint
 olcRefintAttribute: memberof member manager owner
+
+
+dn: cn={4}module,cn=config
+cn: {4}module
+objectClass: olcModuleList
+objectclass: top
+olcModuleLoad: /usr/lib/openldap/pw-bcrypt.so
+olcModulePath: /usr/lib/openldap

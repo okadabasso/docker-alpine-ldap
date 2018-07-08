@@ -27,7 +27,7 @@ mkdir /var/lib/openldap/run/ldapi
 
 slapd -d 256 -h "ldap:/// ldapi:///" -F /etc/openldap/slapd.d
 
-ldapadd -x -D "-Y EXTERNAL -H ldapi:// -f /tmp/data/add_rootPw.ldif
+ldapadd -Y EXTERNAL -H ldapi://localhost/ -f /tmp/data/config-password.ldif
 ldapmodify -x -D cn=config -w xxxxxxxx -f /tmp/data/change-domain.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
@@ -37,7 +37,7 @@ ldapadd -Y EXTERNAL -H ldapi:/// -f /tmp/data/refint-overlay.ldif
 ldapadd -x -D "#{rootDN}" -w #{rootPw} -f /tmp/data/base.ldif
 
 
-ldapadd -Y EXTERNAL -H ldapi:/// -f /tmp/data/acl.ldif
+ldapadd -Y EXTERNAL -H ldapi://localhost/ -f /tmp/data/acl.ldif
 
 mkdir /var/lib/openldap/run
 mkdir /var/lib/openldap/run/ldapi
@@ -54,4 +54,16 @@ docker exec -it -v $PWD/data:/tmp/data -p 389:389 ldap ash
 ldapadd -Y EXTERNAL -H ldapi:/// -f /tmp/data/memberof-overlay.ldif
 ldapsearch -Y EXTERNAL -H ldapi://localhost/ -b cn=config
 
-ldapadd -Y EXTERNAL -H ldapi:/// -f /tmp/data/acl.ldif
+ldapadd -Y EXTERNAL -H ldapi://localhost/ -f /tmp/data/acl.ldif
+
+ldapadd -x -D "cn=Manager,dc=example,dc=com" -w xxxxxxxx -f /tmp/data/base.ldif
+ldapadd -x -D "cn=Manager,dc=example,dc=com" -w xxxxxxxx -f /tmp/data/users.ldif
+ldapadd -x -D "cn=Manager,dc=example,dc=com" -w xxxxxxxx -f /tmp/data/groups.ldif   
+
+ldapadd -x -D "cn=Manager,dc=example,dc=com" -w xxxxxxxx -f /tmp/data/newuser.ldif  
+
+ldapi       slapd.args  slapd.pid
+
+ ldapsearch -x -D "uid=testuser14,ou=users,dc=example,dc=com" -w testuser14 -b ou=users,dc=example,dc=com
+
+ ldapdelete -x -D "cn=Manager,dc=example,dc=com" -w xxxxxxxx "uid=testuser14,ou=users,dc=example,dc=com"
