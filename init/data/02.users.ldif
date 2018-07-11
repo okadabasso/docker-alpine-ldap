@@ -1,4 +1,4 @@
-dn: uid=administrator,ou=users,dc=example,dc=com
+dn: uid=administrator,ou=users,%LDAP_DOMAIN%
 objectClass: top
 objectClass: person
 objectClass: inetOrgPerson
@@ -9,7 +9,7 @@ sn: administrator
 givenName: administrator
 mail: administrator@craft.local
 
-dn: uid=testuser01,ou=users,dc=example,dc=com
+dn: uid=testuser01,ou=users,%LDAP_DOMAIN%
 objectClass: top
 objectClass: person
 objectClass: inetOrgPerson
@@ -20,7 +20,7 @@ givenName: user01
 mail: testuser01@craft.local
 userPassword: testuser01
 
-dn: uid=testuser02,ou=users,dc=example,dc=com
+dn: uid=testuser02,ou=users,%LDAP_DOMAIN%
 objectClass: top
 objectClass: person
 objectClass: inetOrgPerson
@@ -31,7 +31,7 @@ givenName: user02
 mail: testuser02@craft.local
 userPassword: testuser02
 
-dn: uid=testuser03,ou=users,dc=example,dc=com
+dn: uid=testuser03,ou=users,%LDAP_DOMAIN%
 objectClass: top
 objectClass: person
 objectClass: inetOrgPerson
@@ -42,7 +42,7 @@ givenName: user03
 mail: testuser03@craft.local
 userPassword: testuser03
 
-dn: uid=testuser11,ou=users,dc=example,dc=com
+dn: uid=testuser11,ou=users,%LDAP_DOMAIN%
 objectClass: top
 objectClass: person
 objectClass: inetOrgPerson
@@ -53,7 +53,7 @@ givenName: user11
 mail: testuser11@craft.local
 userPassword: testuser11
 
-dn: uid=testuser12,ou=users,dc=example,dc=com
+dn: uid=testuser12,ou=users,%LDAP_DOMAIN%
 objectClass: top
 objectClass: person
 objectClass: inetOrgPerson
@@ -64,7 +64,7 @@ givenName: user12
 mail: testuser12@craft.local
 userPassword: testuser12
 
-dn: uid=testuser13,ou=users,dc=example,dc=com
+dn: uid=testuser13,ou=users,%LDAP_DOMAIN%
 objectClass: top
 objectClass: person
 objectClass: inetOrgPerson

@@ -1,7 +1,0 @@
-
-dn: cn={4}module,cn=config
-cn: {4}module
-objectClass: olcModuleList
-objectclass: top
-olcModuleLoad:  pw-bcrypt.so
-olcModulePath: /usr/lib/openldap
