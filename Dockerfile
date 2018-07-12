@@ -20,11 +20,9 @@ RUN apk update && \
   apk add --no-cache \
   openldap \
   openldap-overlay-all \
-  openldap-clients \
   openldap-back-mdb \
   openldap-back-monitor \
   ldapvi \
-  openrc \
   make g++ git libtool db-dev groff  krb5-libs
 
 # Build tmp OpenLDAP
@@ -56,7 +54,7 @@ RUN rm -rf ${OPENLDAP_INSTALL_DIR}
 RUN rm -rf /usr/local/libexec
 
 # Remove installed deps
-RUN apk del  make g++ git libtool db-dev groff  krb5-libs
+RUN apk del --purge  make g++ git libtool db-dev groff  krb5-libs
 
 #
 # set up ldap

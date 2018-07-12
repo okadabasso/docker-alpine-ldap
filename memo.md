@@ -76,3 +76,4 @@ slappasswd -h "{BCRYPT}" -o module-load="/usr/lib/openldap/pw-bcrypt.so" -s xxxx
 ldapsearch -x -D "cn=Manager,dc=logic-wizard,dc=com" -w xxxxxxxx -b dc=users,ou=logic-wizard,dc=com
 
 docker run -it --rm --name ldap -v $PWD/init:/ldap-init.d -p 389:389 --env-file ./.env ldap
+
