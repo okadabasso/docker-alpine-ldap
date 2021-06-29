@@ -77,5 +77,6 @@ ldapsearch -x -D "cn=Manager,dc=example,dc=com" -w xxxxxxxx -b ou=users,dc=examp
 ldapsearch -x -D "uid=testuser01,ou=users,dc=example,dc=com" -w testuser01 -b ou=users,dc=example,dc=com
 
 docker run -it --rm --name ldap -v $PWD/init:/ldap-init.d -p 389:389 --env-file ./.env ldap
+docker run -it --rm -d --name ldap -v $PWD/init:/ldap-init.d -p 389:389 --env-file ./.env ldap
 
 {BCRYPT}$2b$08$pRopmTNrmmMEq69vdiCYUO0LEqhR9JnE5XGNDvCOUmaB/cnzuS5lK
