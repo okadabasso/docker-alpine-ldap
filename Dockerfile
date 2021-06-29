@@ -1,6 +1,4 @@
-FROM alpine:3.8
-
-MAINTAINER michiakiokada <michiakiokada@craft-net.co.jp>
+FROM alpine:latest
 
 ENV BUILD_ENV=prod
 ENV DEBUG_LEVEL=256
